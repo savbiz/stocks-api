@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -16,11 +17,8 @@ public class StockService {
   private final StockRepository stockRepository;
 
   @Transactional
-  public Stock findStockById(Long id) {
-    return stockRepository.findById(id)
-        .orElseThrow(
-            StockNotFoundException.supplier(String.format("No order found for id '%s'.", id))
-        );
+  public Stock findStockById(final Long id) {
+    return findById(id);
   }
 
   @Transactional
@@ -29,12 +27,23 @@ public class StockService {
   }
 
   @Transactional
-  public Stock saveStock(Stock stock) {
+  public Stock createStock(final Stock stock) {
     return stockRepository.save(stock);
   }
 
   @Transactional
-  public void deleteStockById(Long id) {
-    stockRepository.delete(findStockById(id));
+  public Stock updateStock(final Long id, final BigDecimal newPrice) {
+    final Stock stock = findById(id);
+
+    stock.setCurrentPrice(newPrice);
+
+    return stockRepository.save(stock);
+  }
+
+  private Stock findById(final Long id) {
+    return stockRepository.findById(id)
+        .orElseThrow(
+            StockNotFoundException.supplier(String.format("No stock found for id '%s'.", id))
+        );
   }
 }

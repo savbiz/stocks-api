@@ -29,5 +29,13 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# MacOS
+.DS_Store
+
 ### VS Code ###
 .vscode/
+
+### Vaadin ###
+/node_modules
+pnpmfile.js
+.webpack.generated.js
