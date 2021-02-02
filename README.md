@@ -19,13 +19,6 @@ The application has been developed in **Java 11**. In order to run it, simply go
 type `mvn spring-boot:run` (you need to have Maven installed: http://maven.apache.org/install.html)
 or `./mvnw spring-boot:run` (this uses Maven Wrapper).
 
-The project also contains a **Dockerfile** that creates a docker image of the project:
-
-- `mvn clean package`
-- `docker build -t savbiz/stocks-api .`
-- `docker images` (to fetch the image ID)
-- `docker run -it {IMAGE_ID}`
-
 The application will start on port 8080.
 
 Then open your favorite browser and navigate to http://localhost:8080/swagger-ui.html.
