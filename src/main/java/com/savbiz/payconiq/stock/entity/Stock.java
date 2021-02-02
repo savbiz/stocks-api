@@ -1,18 +1,25 @@
 package com.savbiz.payconiq.stock.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.hibernate.annotations.UpdateTimestamp;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
 @Data
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "stocks")
 public class Stock {
@@ -27,6 +34,10 @@ public class Stock {
   @Column(nullable = false)
   private BigDecimal currentPrice;
 
-  @UpdateTimestamp
   private ZonedDateTime lastUpdate;
+
+  @PreUpdate
+  protected void onUpdate() {
+    lastUpdate = ZonedDateTime.now(ZoneOffset.UTC);
+  }
 }

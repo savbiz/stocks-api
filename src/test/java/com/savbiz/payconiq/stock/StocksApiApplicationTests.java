@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class StocksApiApplicationTests {
 
   @Test
-  void contextLoads() {
+  void test_contextLoads() {
   }
 
 }
