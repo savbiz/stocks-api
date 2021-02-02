@@ -2,6 +2,8 @@
 
 ## Introduction
 
+[![Build Status](https://travis-ci.com/savbiz/stocks-api.svg?token=zMwRmhcr5kJ6irypfMjZ&branch=main)](https://travis-ci.com/github/savbiz/stocks-api)
+
 Java BE REST Application (Stocks API).
 
 ## Assignment Requirements
